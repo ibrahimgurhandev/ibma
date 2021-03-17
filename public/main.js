@@ -9,14 +9,13 @@ const { username, room } = Qs.parse(location.search, {
 
 const socket = io();
 
-// Join chatroom
 socket.emit('joinRoom', { username, room });
 // TODO: on joinRoom, need to update the current users room number
 
 // Get room and users
 socket.on('roomUsers', ({ room, users }) => {
   outputRoomName(room);
-  console.log("FRONT END USERS", users, "END FRONT END USERS")
+  console.log("FRONT END USERS", users, "END FRONT END USERS~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
   outputUsers(users);
 });
 
@@ -42,7 +41,7 @@ chatForm.addEventListener('submit', (e) => {
   }
 
   // Emit message to server
-  socket.emit('chatMessage', msg);
+  socket.emit('chatMessage', msg, username);
   // Todo: On Chat message must save message info to Room Schema
   
   e.target.elements.msg.value = '';

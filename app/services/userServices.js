@@ -11,14 +11,18 @@ class UserServices{
         return doc
     }
 
+    async getByName(name){
+        let doc = await UserSchema.findOne({name}, this.success)
+        return doc
+    }
+
     async getBySocketId(socketId){
         let doc = await UserSchema.findOne({socketId}, this.success)
         return doc
     }
 
     async getByRoom(room){
-        let docs = await UserSchema.find({room}, this.success)
-        console.log("GETTING ROOMS",docs)
+        let docs = await UserSchema.find({room}, this.success);
         return docs
     }
 
@@ -44,7 +48,7 @@ class UserServices{
     }
 
     async clearRoomAndSocket(socketId){
-        let doc = await UserSchema.findOne({socketId})
+        let doc = await UserSchema.findOne({socketId: socketId})
         let copy = doc;
         await doc.update({room: "", socketId: ""}, this.success)
         return copy;
