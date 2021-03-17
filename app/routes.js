@@ -4,12 +4,27 @@ function setUpRoutes(app, passport, db) {
     res.render('index.ejs');
   });
 
-  app.get('/chat', function (req, res) {
-    res.render('chat.ejs');
+
+  app.get('/faq', function (req, res) {
+    res.render('faq.ejs');
   });
 
+  app.get('/about', function (req, res) {
+    res.render('about.ejs');
+  });
+
+  app.get('/contact', function (req, res) {
+    res.render('contact.ejs');
+  });
+
+  app.get('/chat', (req, res) => {
+    res.render('chat.ejs', {roomId: req.query.room})
+  })
+
   app.get('/profile', isLoggedIn, function (req, res) {
-    res.render('profile.ejs');
+    res.render('profile.ejs' , {
+      user: req.user,
+    });
   });
 
   app.get('/logout', function (req, res) {
