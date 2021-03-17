@@ -62,8 +62,10 @@ const UserSchema = require('./app/models/UserSchema.js');
 // Run when client connects
 io.on('connection',(socket) => {
   socket.on('joinRoom', async ({ username, room }) => {
+    console.log(username, "USERNAME",room, "Room")
     const user = await UserService.updateRoomAndSocket(username, room, socket.id)
-    // userJoin(socket.id, username, room);
+    .catch(err=> console.log("Error Joining user to socket",err))
+ 
     console.log("User -> ", user)
     socket.join(room);
     socket.emit('message', formatMessage(botName, 'Welcome to ChatCord!'));
@@ -76,7 +78,7 @@ io.on('connection',(socket) => {
       );
     io.to(user.room).emit('roomUsers', {
       room: user.room,
-      users: await UserService.getByRoom(room)
+      users: await UserService.getByRoom(user.room)
     });
   });
 
