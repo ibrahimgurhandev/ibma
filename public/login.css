@@ -3,6 +3,7 @@
   margin: 0;
   box-sizing: border-box;
 }
+
 .container {
   margin-top: 150px;
 }
@@ -11,11 +12,11 @@
   border-radius: 30px;
   box-shadow: 12px 12px 22px black;
 }
-.img {
+img {
   border-top-left-radius: 30px;
   border-bottom-left-radius: 30px;
 }
-.login-btn {
+.btn1 {
   border: none;
   outline: none;
   height: 50px;
@@ -23,6 +24,7 @@
   border-radius: 5px;
   font-weight: bold;
 }
+
 .col-lg-7 h4 {
   margin-left: 45px;
 }
