@@ -3,9 +3,7 @@ const RoomSchema = require("../models/RoomSchema")
 class RoomServices{
 
     async addMessage(name, msgObject){
-        console.log("Hitting Add Message", name, " ", msgObject)
-        let doc = await RoomSchema.findOne({name: "Spanish"})
-        console.log("DOC: ", doc)
+        let doc = await RoomSchema.findOne({name: name});
         let message = msgObject;
         await doc.update({$push: {
             message:  message
