@@ -30,6 +30,43 @@
               class="img-fluid"
             />
         </div>
+
+        <div class="col-lg-7 px-5 pt-5 my-5">
+          <h4>Sign into your account</h4>
+            <form action="/login" method="post">
+              <div class="form-row">
+                  <div class="col-lg-7">
+                      <label>Email</label>
+                    <input
+                    name="email"
+                      type="email"
+                      placeholder="Email"
+                      class="form-control my-3 p-2"
+                    />
+                  </div>
+                </div>
+
+                   <div class="form-row">
+                  <div class="col-lg-7">
+                      <label>Password</label>
+                    <input
+                      name="password"
+                      type="password"
+                      placeholder="Password"
+                      class="form-control my-3 p-2" 
+                    />
+                  </div>
+                </div>
+
+                  <div class="form-row">
+                  <div class="col-lg-7">
+                    <button type="submit" class="btn1  mt-1 mb-5">Login</button>
+                  </div>
+                </div>
+                  <p>Don't have an account? <a href="/signup">Register Here</a></p>
+                 <p>Or go <a href="/">Home</a></p>
+            </form>
+        </div>
       </div>
     </section>
   </body>
