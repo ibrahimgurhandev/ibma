@@ -4,33 +4,31 @@ const http = require('http');
 const socketio = require('socket.io');
 const server = http.createServer(app);
 const io = socketio(server);
-
-
-const MongoClient = require('mongodb').MongoClient
+const { setUpRoutes }= require("./app/routes.js")
 const mongoose = require('mongoose');
 const passport = require('passport');
 const flash = require('connect-flash');
 const morgan = require('morgan');
-const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
 const session = require('express-session');
 const configDB = require('./config/database.js');
+const RoomService = require("./app/services/roomService");
+const UserService = require("./app/services/userServices");
+
 let db
 //test
 // configuration ===============================================================
 mongoose.connect(configDB.url, (err, database) => {
   if (err) return console.log(err)
   db = database
-  require('./app/routes.js')(app, passport, db);
+  setUpRoutes(app, passport, db);
 }); 
 
 require('./config/passport')(passport); // pass passport for configuration
 
 // set up our express application
 app.use(morgan('dev')); // log every request to the console
-app.use(cookieParser()); // read cookies (needed for auth)
-app.use(bodyParser.json()); // get information from html forms
-app.use(bodyParser.urlencoded({
+app.use(express.json()); // get information from html forms
+app.use(express.urlencoded({
   extended: true
 }));
 app.use(express.static('public'))
@@ -49,7 +47,7 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 
 // launch ======================================================================
 
-const botName = 'ChatCord Bot';
+const botName = 'Bonodero the Welcome Bot';
 
 const formatMessage = require('./app/utils/messages');
 const {
@@ -58,6 +56,7 @@ const {
   userLeave,
   getRoomUsers
 } = require('./app/utils/users');
+const UserSchema = require('./app/models/UserSchema.js');
 
 // Run when client connects
 io.on('connection', socket => {
@@ -80,21 +79,21 @@ io.on('connection', socket => {
     // Send users and room info
     io.to(user.room).emit('roomUsers', {
       room: user.room,
-      users: getRoomUsers(user.room)
+      users: UserService.getByRoom(user.room)
     });
   });
 
   // Listen for chatMessage
   socket.on('chatMessage', msg => {
     const user = getCurrentUser(socket.id);
-
+    RoomService.addMessage(user.room, {userId: "1", text: msg})
     io.to(user.room).emit('message', formatMessage(user.username, msg));
   });
 
   // Runs when client disconnects
-  socket.on('disconnect', () => {
-    const user = userLeave(socket.id);
-
+  socket.on('disconnect', async () => {
+    const user = await userLeave(socket.id);
+    
     if (user) {
       io.to(user.room).emit(
         'message',
@@ -104,7 +103,7 @@ io.on('connection', socket => {
       // Send users and room info
       io.to(user.room).emit('roomUsers', {
         room: user.room,
-        users: getRoomUsers(user.room)
+        users: UserService.getByRoom(user.room)
       });
     }
   });
