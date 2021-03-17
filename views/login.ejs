@@ -15,5 +15,22 @@
     />
     <!-- CSS AND BOOSTRAP END -->
   </head>
-  <body></body>
+  <body>
+    <section class="Form my-4 mx-5">
+      <div class="container">
+        <div class="row g-0">
+          <% if (message.length > 0) { %>
+          <div class="alert alert-danger"><%= message %></div>
+          <% } %>
+             <div class="col-sm-5">
+            <img
+              src="https://i.pinimg.com/originals/66/0e/da/660edaa94e8b180f26b2b40ac50c96dc.jpg"
+              alt=""
+              srcset=""
+              class="img-fluid"
+            />
+        </div>
+      </div>
+    </section>
+  </body>
 </html>
