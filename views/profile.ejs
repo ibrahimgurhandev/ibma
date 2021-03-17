@@ -1,89 +1,88 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-
-<head>
-  <title>Chat and Learn Languages</title>
-  <meta name="viewport"
-    content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet"
-    href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
-  <link rel="stylesheet"
-    href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link href="vendor/bootstrap/css/bootstrap.min.css"
-    rel="stylesheet">
-  <link href="css/heroic-features.css" rel="stylesheet">
-  <link
-			rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
-			integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk="
-			crossorigin="anonymous"
-		/>
-  <link rel="stylesheet" href="style.css">
-
-</head>
-<!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-  <div class="container">
-    <a class="navbar-brand" href="#">Chat App</a>
-    <button class="navbar-toggler" type="button"
-      data-toggle="collapse" data-target="#navbarResponsive"
-      aria-controls="navbarResponsive" aria-expanded="false"
-      aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-  </div>
-</nav>
-
-
-
-<body>
-  <div class="container">
-
-    <div class="page-header text-center">
-      <h1><span class="fa fa-anchor"></span> Profile Page</h1>
-      <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+  <head>
+    <title>Chat and Learn Languages</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      rel="stylesheet"
+      href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/heroic-features.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+      integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk="
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Chat App</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarResponsive"
+        aria-controls="navbarResponsive"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
     </div>
- </div>
+  </nav>
 
- <div class="join-container">
-  <header class="join-header">
-    <h1><i class="fas fa-smile"></i> Chat App</h1>
-  </header>
-  <main class="join-main">
-    <form action="/chat">
-      <div class="form-control">
-        <label for="username">Username</label>
-        <input
-          type="text"
-          name="username"
-          id="username"
-          placeholder="Enter username..."
-          required
-        />
+  <body>
+    <div class="container">
+      <div class="page-header text-center">
+        <h1><span class="fa fa-anchor"></span> Profile Page</h1>
+        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
       </div>
-      <div class="form-control">
-        <label for="room">Room</label>
-        <select name="room" id="room">
-          <option value="Spanish">Spanish</option>
-          <option value="Arabic">Arabic</option>
-          <option value="English">English</option>
-        </select>
-      </div>
-      <button type="submit" class="btn">Join Chat</button>
-    </form>
-  </main>
-</div>
+    </div>
 
+    <div class="join-container">
+      <header class="join-header">
+        <h1><i class="fas fa-smile"></i> Chat App</h1>
+      </header>
+      <main class="join-main">
+        <form action="/chat">
+          <div class="form-control">
+            <label for="username">Username</label>
+            <input
+              type="text"
+              name="username"
+              id="username"
+              placeholder="Enter username..."
+              required
+            />
+          </div>
+          <div class="form-control">
+            <label for="room">Room</label>
+            <select name="room" id="room">
+              <option value="Spanish">Spanish</option>
+              <option value="Arabic">Arabic</option>
+              <option value="English">English</option>
+            </select>
+          </div>
+          <button type="submit" class="btn">Join Chat</button>
+        </form>
+      </main>
+    </div>
 
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-
-  <script src="main.js"></script>
-
-</body>
-
+    <script src="main.js"></script>
+  </body>
 </html>
