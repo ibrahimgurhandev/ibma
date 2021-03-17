@@ -1,52 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <title>IBMA</title>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <!-- CSS AND BOOTSTRAP -->
+    <title>Chat App</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
       crossorigin="anonymous"
     />
-    <!-- CSS AND BOOSTRAP END -->
+    <link
+      rel="stylesheet"
+      href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="login.css" />
   </head>
+
   <body>
     <section class="Form my-4 mx-5">
       <div class="container">
         <div class="row g-0">
-          <% if (message.length > 0) { %>
-          <div class="alert alert-danger"><%= message %></div>
-          <% } %>
-             <div class="col-sm-5">
+<!-- 
+        <% if (message.length > 0) { %>
+        <div class="alert alert-danger"><%= message %></div>
+        <% } %> -->
+
+          <div class="col-sm-5">
             <img
               src="https://i.pinimg.com/originals/66/0e/da/660edaa94e8b180f26b2b40ac50c96dc.jpg"
               alt=""
               srcset=""
               class="img-fluid"
             />
-        </div>
-
-        <div class="col-lg-7 px-5 pt-5 my-5">
-          <h4>Sign into your account</h4>
-            <form action="/login" method="post">
-              <div class="form-row">
+          </div>
+            <div class="col-lg-7 px-5 pt-5 my-5">
+                <h4>Sign into your account</h4>
+              <form action="/login" method="post">
+                <div class="form-row">
                   <div class="col-lg-7">
                       <label>Email</label>
                     <input
-                    name="email"
+                      name="email"
                       type="email"
                       placeholder="Email"
                       class="form-control my-3 p-2"
                     />
                   </div>
                 </div>
-
-                   <div class="form-row">
+                
+                <div class="form-row">
                   <div class="col-lg-7">
                       <label>Password</label>
                     <input
@@ -58,14 +59,16 @@
                   </div>
                 </div>
 
-                  <div class="form-row">
+                <div class="form-row">
                   <div class="col-lg-7">
-                    <button type="submit" class="login-btn  mt-1 mb-5">Login</button>
+                    <button type="submit" class="btn1  mt-1 mb-5">Login</button>
                   </div>
                 </div>
-                  <p>Don't have an account? <a href="/signup">Register Here</a></p>
+                <p>Don't have an account? <a href="/signup">Register Here</a></p>
                  <p>Or go <a href="/">Home</a></p>
-            </form>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
     </section>
