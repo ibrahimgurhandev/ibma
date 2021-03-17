@@ -1,10 +1,10 @@
-
+const UserServices = require("../services/userServices")
 const users = [];
 
 // Join user to chat
 function userJoin(id, username, room) {
   const user = { id, username, room };
-
+  UserServices.create()
   users.push(user);
 
   return user;

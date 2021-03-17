@@ -4,6 +4,19 @@ const roomName = document.getElementById('room-name');
 const userList = document.getElementById('users');
 
 // Get username and room from URL
+let currentUser = {
+  name:"",
+  room:"",
+  local:{
+    email:""
+  }
+}
+
+
+const setCurrentUser = (user) =>{
+  window.sessionStorage.setItem("user", user)
+}
+
 const { username, room } = Qs.parse(location.search, {
   ignoreQueryPrefix: true,
 });
@@ -12,6 +25,7 @@ const socket = io();
 
 // Join chatroom
 socket.emit('joinRoom', { username, room });
+// TODO: on joinRoom, need to update the current users room number
 
 // Get room and users
 socket.on('roomUsers', ({ room, users }) => {
@@ -21,7 +35,6 @@ socket.on('roomUsers', ({ room, users }) => {
 
 // Message from server
 socket.on('message', (message) => {
-  console.log(message);
   outputMessage(message);
 
   // Scroll down
@@ -43,8 +56,8 @@ chatForm.addEventListener('submit', (e) => {
 
   // Emit message to server
   socket.emit('chatMessage', msg);
-
-  // Clear input
+  // Todo: On Chat message must save message info to Room Schema
+  
   e.target.elements.msg.value = '';
   e.target.elements.msg.focus();
 });
@@ -73,6 +86,7 @@ function outputRoomName(room) {
 // Add users to DOM
 function outputUsers(users) {
   userList.innerHTML = '';
+  //Todo: Get Users from DB
   users.forEach((user) => {
     const li = document.createElement('li');
     li.innerText = user.username;
