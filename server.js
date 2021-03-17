@@ -22,6 +22,7 @@ mongoose.connect(configDB.url, (err, database) => {
   db = database
   setUpRoutes(app, passport, db);
 }); 
+mongoose.set('useFindAndModify', false);
 
 require('./config/passport')(passport); // pass passport for configuration
 
@@ -59,51 +60,48 @@ const {
 const UserSchema = require('./app/models/UserSchema.js');
 
 // Run when client connects
-io.on('connection', socket => {
-  socket.on('joinRoom', ({ username, room }) => {
-    const user = userJoin(socket.id, username, room);
-
-    socket.join(user.room);
-
-    // Welcome current user
+io.on('connection',(socket) => {
+  socket.on('joinRoom', async ({ username, room }) => {
+    console.log(username, "USERNAME",room, "Room")
+    const user = await UserService.updateRoomAndSocket(username, room, socket.id)
+    .catch(err=> console.log("Error Joining user to socket",err))
+ 
+    console.log("User -> ", user)
+    socket.join(room);
     socket.emit('message', formatMessage(botName, 'Welcome to ChatCord!'));
 
-    // Broadcast when a user connects
     socket.broadcast
-      .to(user.room)
+      .to(room)
       .emit(
         'message',
-        formatMessage(botName, `${user.username} has joined the chat`)
+        formatMessage(botName, `${user.name} has joined the chat`)
       );
-
-    // Send users and room info
     io.to(user.room).emit('roomUsers', {
       room: user.room,
-      users: UserService.getByRoom(user.room)
+      users: await UserService.getByRoom(user.room)
     });
   });
 
-  // Listen for chatMessage
-  socket.on('chatMessage', msg => {
-    const user = getCurrentUser(socket.id);
-    RoomService.addMessage(user.room, {userId: "1", text: msg})
-    io.to(user.room).emit('message', formatMessage(user.username, msg));
+  socket.on('chatMessage', async (msg) => {
+    const user = await UserService.getBySocketId(socket.id);
+    RoomService.addMessage(user.room, {userId: user._id, text: msg})
+    io.to(user.room).emit('message', formatMessage(user.name, msg));
+
   });
 
-  // Runs when client disconnects
   socket.on('disconnect', async () => {
-    const user = await userLeave(socket.id);
-    
+    const user = await UserService.clearRoomAndSocket(socket.id);
+    console.log("USER DISCONNECTING: ", user)
     if (user) {
       io.to(user.room).emit(
         'message',
-        formatMessage(botName, `${user.username} has left the chat`)
+        formatMessage(botName, `${user.name} has left the chat`)
       );
 
       // Send users and room info
       io.to(user.room).emit('roomUsers', {
         room: user.room,
-        users: UserService.getByRoom(user.room)
+        users: await UserService.getByRoom(user.room)
       });
     }
   });

@@ -3,20 +3,6 @@ const chatMessages = document.querySelector('.chat-messages');
 const roomName = document.getElementById('room-name');
 const userList = document.getElementById('users');
 
-// Get username and room from URL
-let currentUser = {
-  name:"",
-  room:"",
-  local:{
-    email:""
-  }
-}
-
-
-const setCurrentUser = (user) =>{
-  window.sessionStorage.setItem("user", user)
-}
-
 const { username, room } = Qs.parse(location.search, {
   ignoreQueryPrefix: true,
 });
@@ -30,6 +16,7 @@ socket.emit('joinRoom', { username, room });
 // Get room and users
 socket.on('roomUsers', ({ room, users }) => {
   outputRoomName(room);
+  console.log("FRONT END USERS", users, "END FRONT END USERS")
   outputUsers(users);
 });
 
@@ -89,7 +76,7 @@ function outputUsers(users) {
   //Todo: Get Users from DB
   users.forEach((user) => {
     const li = document.createElement('li');
-    li.innerText = user.username;
+    li.innerText = user.name;
     userList.appendChild(li);
   });
 }

@@ -16,7 +16,9 @@ const userSchema = new Schema({
     name: String,
     languages: [{id: Number, proficiency: Number }],
     friends: [String],
-    room: String}
+    room: String,
+    socketId: String
+}
 )
 
 // generating a hash
