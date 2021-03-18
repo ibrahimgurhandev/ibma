@@ -1,8 +1,10 @@
 const UserService = require("../app/services/userServices");
 const RoomService = require("../app/services/roomServices");
 const botName = "Bonodero the Welcome Bot";
+const moment = require('moment');
 
 const formatMessage = require("../app/utils/messages");
+const { use } = require("passport");
 
 module.exports = function(io){
 
@@ -35,7 +37,7 @@ module.exports = function(io){
       
         socket.on("chatMessage", async (msg, username) => {
           const user = await UserService.getByName(username);
-          RoomService.addMessage(user.room, { userId: user._id, text: msg });
+          RoomService.addMessage(user.room, { userId: user._id, text: msg, userName:username, time: moment().format('h:mm a' )});
           io.to(user.room).emit("message", formatMessage(user.name, msg));
         });
       
