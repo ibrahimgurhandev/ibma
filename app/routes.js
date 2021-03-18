@@ -28,7 +28,8 @@ function setUpRoutes(app, passport, db) {
   }).toArray((err, result) => {
     if (err) return console.log(err)
     res.render('chat.ejs', {
-      messages: result[0].message
+      messages: result[0].message,
+      roomId: req.query.room
     })
     })
   })
