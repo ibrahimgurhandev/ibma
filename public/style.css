@@ -152,3 +152,16 @@ a {
   border-radius: 5px;
   font-size: 17px;
 }
+
+
+.videoFrame{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background-color: #4b4276;
+}
+
+iframe{
+border-radius: 8px;
+}
