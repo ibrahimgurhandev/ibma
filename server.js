@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 const flash = require("connect-flash");
 const session = require("express-session");
+require('dotenv').config();
 
 const app = express();
 const http = require("http");
@@ -16,9 +17,8 @@ require("./config/passport")(passport);
 
 const { setUpRoutes } = require("./app/routes.js");
 var db
-const configDB = require("./config/database.js");
-
-mongoose.connect(configDB.url, (err, database) => {
+console.log(process.env)
+mongoose.connect(process.env.DATABASE_URL, (err, database) => {
   db = database
   if (err) return console.log(err);
   setUpRoutes(app, passport, db);
