@@ -1,4 +1,7 @@
-function setUpRoutes(app, passport) {
+const RoomSchema = require("./models/RoomSchema");
+const roomServices = require("./services/roomServices");
+
+function setUpRoutes(app, passport, db) {
 
   app.get('/', function (req, res) {
     res.render('index.ejs');
@@ -18,8 +21,18 @@ function setUpRoutes(app, passport) {
   });
 
   app.get('/chat', (req, res) => {
-    res.render('chat.ejs', {roomId: req.query.room})
+    var name = req.query.room
+  
+  db.collection('rooms').find({
+    name: name
+  }).toArray((err, result) => {
+    if (err) return console.log(err)
+    res.render('chat.ejs', {
+      messages: result[0].message
+    })
+    })
   })
+  
 
   app.get('/profile', isLoggedIn, function (req, res) {
     res.render('profile.ejs' , {
