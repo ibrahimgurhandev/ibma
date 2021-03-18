@@ -73,7 +73,10 @@ io.on("connection", (socket) => {
       socket.id
     ).catch((err) => console.log("Error Joining user to socket", err));
     socket.join(room);
-    socket.emit("message", formatMessage(botName, `Welcome to ${room} room!`));
+    socket.emit(
+      "message",
+      formatMessage(botName, `Welcome to the ${room} speaking room!`)
+    );
     socket
       .to(room)
       .emit(
