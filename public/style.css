@@ -5,9 +5,9 @@
 }
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 16px;
-  background: lightslategray;
+  background: lightslategrey;
   margin: 20px;
 }
 
@@ -25,23 +25,23 @@ a {
   background: #fff;
   color: #283149;
   border: 0;
-  font-size: 17px;
   border-radius: 5px;
-  margin-left: 5px;
+  font-size: 17px;
 }
 
 /* Chat Page */
 
 .chat-container {
-  max-width: 1000px;
-  background: white;
+  max-width: 1100px;
+  background: #fff;
   margin: 30px auto;
+  overflow: hidden;
 }
 
 .chat-header {
   background: #283149;
   color: #fff;
-  padding: 20px;
+  padding: 15px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -50,7 +50,7 @@ a {
 .chat-main {
   display: grid;
   grid-template-columns: 1fr 3fr;
-  height: 50vh;
+  min-height: 50vh;
 }
 
 .chat-sidebar {
@@ -60,12 +60,12 @@ a {
   overflow-y: scroll;
 }
 
-/* .chat-sidebar h2 {
-  font-size: 20px; 
-   background: rgba(0, 0, 0, 0.1);
+.chat-sidebar h2 {
+  font-size: 20px;
+  background: rgba(0, 0, 0, 0.1);
   padding: 10px;
   margin-bottom: 20px;
-} */
+}
 
 .chat-sidebar h3 {
   margin-bottom: 15px;
@@ -79,27 +79,27 @@ a {
   padding: 30px;
   max-height: 500px;
   overflow-y: scroll;
-  color: white;
 }
 
 .chat-messages .message {
   padding: 10px;
   margin-bottom: 15px;
-  background-color: lightblue;
+  background-color: lightsteelblue;
   border-radius: 5px;
-  float: left;
+  overflow-wrap: break-word;
 }
 
 .chat-messages .message .meta {
   font-size: 15px;
   font-weight: bold;
-  color: #283149;
+  color: #404b69;
   opacity: 0.7;
   margin-bottom: 7px;
 }
 
 .chat-messages .message .meta span {
-  color: #777;
+  color: black;
+  margin-left: 10px;
 }
 
 .chat-form-container {
@@ -115,16 +115,16 @@ a {
   font-size: 16px;
   padding: 5px;
   height: 40px;
-  width: 95%;
+  flex: 1;
   border: none;
-  border-radius: 10px;
-}
-#room-name {
+  border-radius: 5px;
   margin-right: 10px;
 }
 #chat-room-name-container {
   display: flex;
-  justify-content: space-evenly;
+}
+#room-name {
+  margin-right: 6px;
 }
 
 @media (max-width: 700px) {
