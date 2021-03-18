@@ -62,36 +62,34 @@ const UserSchema = require('./app/models/UserSchema.js');
 // Run when client connects
 io.on('connection',(socket) => {
   socket.on('joinRoom', async ({ username, room }) => {
-    console.log(username, "USERNAME",room, "Room")
-    const user = await UserService.updateRoomAndSocket(username, room, socket.id)
+   // Deleted usernamne and replaced line 74 user.name with username
+    await UserService.updateRoomAndSocket(username, room, socket.id)
     .catch(err=> console.log("Error Joining user to socket",err))
- 
-    console.log("User -> ", user)
     socket.join(room);
     socket.emit('message', formatMessage(botName, 'Welcome to ChatCord!'));
-
-    socket.broadcast
+    socket
       .to(room)
       .emit(
         'message',
-        formatMessage(botName, `${user.name} has joined the chat`)
-      );
-    io.to(user.room).emit('roomUsers', {
-      room: user.room,
-      users: await UserService.getByRoom(user.room)
-    });
+        formatMessage(botName, `${username} has joined the chat`)
+      )
+    io.to(room).emit('roomUsers', {
+        room: room,
+        users: await UserService.getByRoom(room)
+        .catch(err=>console.log("Error in room user broadcast: ", err))
+      });
   });
 
-  socket.on('chatMessage', async (msg) => {
-    const user = await UserService.getBySocketId(socket.id);
+  socket.on('chatMessage', async (msg, username) => {
+    const user = await UserService.getByName(username);
     RoomService.addMessage(user.room, {userId: user._id, text: msg})
     io.to(user.room).emit('message', formatMessage(user.name, msg));
 
   });
 
   socket.on('disconnect', async () => {
-    const user = await UserService.clearRoomAndSocket(socket.id);
-    console.log("USER DISCONNECTING: ", user)
+    const user = await UserService.clearRoomAndSocket(socket.id)
+    .catch(err => console.log(" error in disconnect" , err))
     if (user) {
       io.to(user.room).emit(
         'message',
@@ -102,6 +100,7 @@ io.on('connection',(socket) => {
       io.to(user.room).emit('roomUsers', {
         room: user.room,
         users: await UserService.getByRoom(user.room)
+        .catch(err=>console.log("Error in roomusers Evcent on disconnect", err))
       });
     }
   });

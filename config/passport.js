@@ -22,8 +22,7 @@ module.exports = function (passport) {
         passReqToCallback: true 
     },
         function (req, email, password, done) {
-            console.log(req.body, "~~~~~~~~~~`REQ.BODY")
-            UserSchema.findOne({ 'local.email': email, name: req.body.userName }, function(err, user) {
+            UserSchema.findOne({ 'local.email': email }, function(err, user) {
                 if (err)
                     return done(err);
                 if (user) {
