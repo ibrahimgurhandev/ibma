@@ -367,3 +367,19 @@ body {
   flex-wrap: wrap;
   justify-content: center;
 }
+
+.chat-header-profile {
+  background: #4b4276;
+  color: #fff;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chat-messages-options {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
