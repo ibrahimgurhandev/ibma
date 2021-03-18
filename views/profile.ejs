@@ -3,12 +3,14 @@
 
 <head>
     <title>Learn Languages by chatting with People around the world</title>
-    <link rel="stylesheet"
-        href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet"
         href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
         <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="style.css" />
+
 </head>
 
 <body>
@@ -24,55 +26,63 @@
                 <li><a href="/contact"><i class="fas fa-address-book"></i> Contact</a></li>
                
             </ul> 
-            <div class="social_media">
-              <a href="#"><i class="fab fa-facebook-f"></i></a>
-              <a href="#"><i class="fab fa-twitter"></i></a>
-              <a href="#"><i class="fab fa-instagram"></i></a>
-          </div>
+        
         </div>
         <div class="main_content">
             <div class="header">
                 <div>Welcome to IBMA</div>
                 <div>
-                    <a href="/logout" class="btn btn-primary"><span
-                        class="fa fa-user"></span>Logout</a>
+                    <a href="/logout" class="btn2 btn-primary"><span"></span>Logout</a>
                 </div>
                </div>  
             <div class="info">
-                <div class="container">
-               <div class="join-container">
-                <header class="join-header">
-                  <h1><i class="fas fa-smile"></i> Chat App</h1>
+          
+
+
+              <div class="chat-container">
+                <header class="chat-header-profile">
+                  <div id="chat-room-name-container">
+                    <h2 id="room-name"></h2>
+                    <h2>Join Chat Room</h2>
+                  </div>
                 </header>
-                <main class="join-main">
-                  <form action="/chat">
-                    <div class="form-control">
-                      <input
-                        type="text"
-                        name="username"
-                        id="username"
-                        value="<%= user.name %>"
-                        hidden
-                      /> 
-                      <h6>Username: <%= user.name %></h6>
-                    </div>
-                    <div class="form-control">
-                      <label for="room">Room</label>
-                      <select name="room" id="room">
-                        <option name="roomId" value="Spanish">Spanish</option>
-                        <option name="roomId" value="Arabic">Arabic</option>
-                        <option name="roomId"  value="English">English</option>
-                        <option name="roomId" value="French">French</option>
-                        <option name="roomId" value="Chinese">Chinese</option>
-                        <option name="roomId"  value="Russian">Russian</option>
-                      </select>
-                    </div>
-                    <button type="submit" class="btn">Join Chat</button>
-                  </form>
+                <main class="chat-main-profile">
+                
+                  <div class="chat-messages-options">
+                   
+
+
+                    <form action="/chat">
+                      <div class="form-control">
+                        <input
+                          type="text"
+                          name="username"
+                          id="username"
+                          value="<%= user.name %>"
+                          hidden
+                        /> 
+                        <h6>Username: <%= user.name %></h6>
+                      </div>
+                      <div class="form-control">
+                        <label for="room">Room</label>
+                        <select name="room" id="room" class="custom-select custom-select-lg mb-3">
+                          <option name="roomId" value="Spanish"> Spanish</option>
+                          <option name="roomId" value="Arabic">Arabic</option>
+                          <option name="roomId"  value="English">English</option>
+                          <option name="roomId" value="French">French</option>
+                          <option name="roomId" value="Chinese">Chinese</option>
+                          <option name="roomId"  value="Russian">Russian</option>
+                        </select>
+                        
+                      </div>
+                      <button type="submit" class="btn2 btn-primary">Join Chat</button>
+                    </form>
+
+
+                  </div>
                 </main>
+                
               </div>
-              
-  
     
 
             </div>
@@ -80,9 +90,7 @@
     </div>
   
 <script src="main.js"></script>
-<script>
-  const currrentUser = "<%= user.local.email %>"
-</script>
+
 </body>
 
 </html>
