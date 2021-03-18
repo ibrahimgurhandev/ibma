@@ -39,7 +39,7 @@ a {
 }
 
 .chat-header {
-  background: #283149;
+  background: #4b4276;
   color: #fff;
   padding: 15px;
   display: flex;
@@ -104,7 +104,7 @@ a {
 
 .chat-form-container {
   padding: 20px 30px;
-  background-color: #283149;
+  background-color: #4b4276;
 }
 
 .chat-form-container form {
@@ -135,4 +135,20 @@ a {
   .chat-sidebar {
     display: none;
   }
+}
+
+.chat-main-profile {
+  display: flex;
+  min-height: 50vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn2 {
+  cursor: pointer;
+  padding: 5px 15px;
+  border: 0;
+  background-color: #4b4276;
+  border-radius: 5px;
+  font-size: 17px;
 }
