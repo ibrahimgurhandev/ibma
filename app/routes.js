@@ -1,4 +1,4 @@
-function setUpRoutes(app, passport, db) {
+function setUpRoutes(app, passport) {
 
   app.get('/', function (req, res) {
     res.render('index.ejs');
