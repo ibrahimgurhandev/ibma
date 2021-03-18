@@ -355,3 +355,15 @@ body {
 .contact-form button:focus {
   box-shadow: none;
 }
+
+.img-responsive {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 25%;
+}
+.container-about {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
