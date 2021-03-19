@@ -20,10 +20,7 @@
       <div class="container">
         <div class="row g-0">
 
-        <% if (message.length > 0) { %>
-        <div class="alert alert-danger"><%= message %></div>
-        <% } %>
-
+    
           <div class="col-sm-5">
             <img
               src="https://i.pinimg.com/originals/66/0e/da/660edaa94e8b180f26b2b40ac50c96dc.jpg"
@@ -33,6 +30,10 @@
             />
           </div>
             <div class="col-lg-7 px-5 pt-5 my-5">
+              <% if (message.length > 0) { %>
+                <div class="alert alert-danger"><%= message %></div>
+                <% } %>
+        
                 <h4>Sign into your account</h4>
               <form action="/login" method="post">
                 <div class="form-row">
